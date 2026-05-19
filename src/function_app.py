@@ -3,63 +3,41 @@ import azure.functions as func
 
 app = func.FunctionApp()
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_categoria_produto(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela categoria_produto.')
+#importar para function principal
+from triggers.extract_cliente import bp as cliente
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_cliente(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela cliente.')
+from triggers.extract_categoria_produto import bp as categoria_produto
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_entrega(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela entrega.')
+from triggers.extract_entrega import bp as entrega
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_estoque_movimentacao(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela estoque_movimentação.')
+from triggers.extract_estoque_movimentacao import bp as estoque_movimentacao
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_estoque_saldo(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela estoque_saldo.')
+from triggers.extract_estoque_saldo import bp as estoque_saldo
 
+from triggers.extract_pedido import bp as pedido
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_pedido(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela pedido.')
+from triggers.extract_pedido_item import bp as pedido_item
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_pedido_item(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela pedido_item.')
+from triggers.extract_produto import bp as produto
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_produto(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela produto.')
+from triggers.extract_regiao import bp as regiao
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_regiao(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela regiao.')
+from triggers.extract_representante import bp as representante
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_representante(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela representante.')
+from triggers.extract_titulo_receber import bp as titulo_receber
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_titulo_receber(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela titulo_receber.')
+from triggers.extract_transportadora import bp as transportadora
 
-@app.timer_trigger(schedule="0 * * * * *", arg_name="myTimer", run_on_startup=False,
-              use_monitor=False) 
-def extract_transportadora(myTimer: func.TimerRequest) -> None:
-    logging.info('tabela transportadora.')
+#registrar
+app.register_functions(cliente)
+app.register_functions(categoria_produto)
+app.register_functions(entrega)
+app.register_functions(estoque_movimentacao)
+app.register_functions(estoque_saldo)
+app.register_functions(pedido)
+app.register_functions(pedido_item)
+app.register_functions(produto)
+app.register_functions(regiao)
+app.register_functions(representante)
+app.register_functions(titulo_receber)
+app.register_functions(transportadora)
