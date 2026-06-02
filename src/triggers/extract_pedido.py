@@ -7,7 +7,7 @@ bp = func.Blueprint()
 
 
 @bp.timer_trigger(schedule="0 0 6 * * *", arg_name="timer", run_on_startup=False)
-def extract_pedido_item(timer: func.TimerRequest) -> None:
+def extract_pedido(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
     sql_database = os.getenv("SQL_DATABASE_SOURCE")
@@ -36,7 +36,7 @@ def extract_pedido_item(timer: func.TimerRequest) -> None:
             # Cria um cursor para executar a consulta   
             cursor = conn.cursor()
             
-            query = "select top 5 * from erp.pedido_item"
+            query = "select top 5 * from erp.pedido"
 
             # Executa a consulta SQL
             cursor.execute(query)
