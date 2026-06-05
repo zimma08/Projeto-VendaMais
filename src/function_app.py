@@ -28,6 +28,8 @@ from triggers.extract_titulo_receber import bp as titulo_receber
 
 from triggers.extract_transportadora import bp as transportadora
 
+from triggers.benchmark_database import bp as benchmark_database
+
 #registrar
 app.register_functions(cliente)
 app.register_functions(categoria_produto)
@@ -41,3 +43,4 @@ app.register_functions(regiao)
 app.register_functions(representante)
 app.register_functions(titulo_receber)
 app.register_functions(transportadora)
+app.register_functions(benchmark_database)
