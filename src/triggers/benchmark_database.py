@@ -11,7 +11,7 @@ bp = func.Blueprint()
 
 
 @bp.timer_trigger(
-    schedule="0 0 6 * * *",
+    schedule="0 */1 * * * *",
     arg_name="timer",
     run_on_startup=True
 )
