@@ -43,7 +43,7 @@ def benchmark_database(timer: func.TimerRequest) -> None:
         "Connection Timeout=30;"
     )
 
-    query = "SELECT * FROM erp.pedido"
+    query = "SELECT * FROM erp.estoque_movimentacao"
 
     try:
 
