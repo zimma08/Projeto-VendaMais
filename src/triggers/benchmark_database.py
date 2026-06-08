@@ -11,9 +11,9 @@ bp = func.Blueprint()
 
 
 @bp.timer_trigger(
-    schedule="0 */1 * * * *",
+    schedule="0 0 6 * * *",
     arg_name="timer",
-    run_on_startup=True
+    run_on_startup=False
 )
 def benchmark_database(timer: func.TimerRequest) -> None:
 
