@@ -65,7 +65,6 @@ def extract_categoria_produto(timer: func.TimerRequest) -> None:
                         """
                         INSERT INTO erp.categoria_produto
                         (
-                            id_categoria,
                             cd_categoria,
                             nm_categoria,
                             fl_ativo,
@@ -76,7 +75,6 @@ def extract_categoria_produto(timer: func.TimerRequest) -> None:
                         )
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                         """,
-                        row.id_categoria,
                         row.cd_categoria,
                         row.nm_categoria,
                         row.fl_ativo,
