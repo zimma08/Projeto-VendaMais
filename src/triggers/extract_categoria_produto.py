@@ -73,7 +73,7 @@ def extract_categoria_produto(timer: func.TimerRequest) -> None:
                             nm_sistema_origem,
                             cd_registro_origem
                         )
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
                         """,
                         row.cd_categoria,
                         row.nm_categoria,
