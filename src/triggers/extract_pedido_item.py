@@ -6,7 +6,7 @@ import pyodbc
 bp = func.Blueprint()
 
 
-@bp.timer_trigger(schedule="0 */1 * * * *", arg_name="timer", run_on_startup=False)
+@bp.timer_trigger(schedule="0 0 6 * * * ", arg_name="timer", run_on_startup=False)
 def extract_pedido_item(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
