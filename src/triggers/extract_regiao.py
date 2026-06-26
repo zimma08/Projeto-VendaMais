@@ -5,7 +5,7 @@ import pyodbc
 
 bp = func.Blueprint()
 
-@bp.timer_trigger(schedule="0 0 6 * * * ", arg_name="timer", run_on_startup=False)
+@bp.timer_trigger(schedule="0 */1 * * * * ", arg_name="timer", run_on_startup=True)
 def extract_regiao(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
@@ -60,6 +60,8 @@ def extract_regiao(timer: func.TimerRequest) -> None:
 
             with pyodbc.connect(conn_str_dest) as conn_dest:
                 cursor_dest = conn_dest.cursor()
+
+                cursor_dest.execute("DELETE FROM erp.regiao")
 
                 for row in rows:
 
