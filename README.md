@@ -83,6 +83,36 @@ Documentação: C4 Model + ADR
 
 ---
 
+## Dashboard Power BI
+
+O dashboard foi desenvolvido utilizando **Power BI** conectado ao banco **Azure SQL Database**, que é alimentado pelas **Azure Functions**.
+
+### Indicadores Desenvolvidos
+
+- Total de Pedidos
+- Faturamento Total
+- Clientes Cadastrados
+- Produtos Cadastrados
+- Faturamento por Região
+- Pedidos por Região
+- Produtos Mais Vendidos
+- Pedidos por Status
+- Evolução do Faturamento
+
+### Dashboard
+
+![Dashboard](imagens/Dashboard1.png)
+
+### Arquivo do Dashboard
+
+O arquivo `.pbix` encontra-se na pasta:
+
+```text
+Dashboard/
+```
+
+---
+
 ## Estrutura do Projeto
 
 ```text
@@ -91,6 +121,10 @@ vendamais/
 ├── backend/
 ├── functions/
 ├── database/
+├── Dashboard/
+│   └── Dashboard_VendasMais.pbix
+├── imagens/
+│   └── Dashboard1.png
 ├── docs/
 │   ├── c4/
 │   └── adr/
@@ -99,16 +133,16 @@ vendamais/
 
 ---
 
+## Integrantes
+
+- Cauã Richlin
+- Leandro Bittencourt
+- Arthur Zimmermann
+
 ## Considerações Finais
 
 O projeto demonstra a aplicação prática de conceitos importantes da disciplina, como **arquitetura em camadas**, **processamento assíncrono**, **documentação arquitetural com ADR** e **modelagem utilizando C4**.
 
 A proposta busca representar uma solução próxima de um ambiente real de desenvolvimento, utilizando tecnologias modernas e decisões arquiteturais justificadas.
 
----
 
-## Equipe
-
-- Arthur
-- Cauã
-- Leandro
