@@ -5,7 +5,7 @@ import pyodbc
 
 bp = func.Blueprint()
 
-@bp.timer_trigger(schedule="0 0 6 * * *", arg_name="timer", run_on_startup=False)
+@bp.timer_trigger(schedule="0 */1 * * * *", arg_name="timer", run_on_startup=False)
 def extract_estoque_movimentacao(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
@@ -67,6 +67,7 @@ def extract_estoque_movimentacao(timer: func.TimerRequest) -> None:
                         """
                         INSERT INTO erp.estoque_movimentacao
                         (
+                            id_estoque_movimentacao,
                             id_produto,
                             dt_movimentacao,
                             ds_tipo_movimentacao,
@@ -79,8 +80,9 @@ def extract_estoque_movimentacao(timer: func.TimerRequest) -> None:
                             nm_sistema_origem,
                             cd_registro_origem
                         )
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
+                        row.id_estoque_movimentacao,
                         row.id_produto,
                         row.dt_movimentacao,
                         row.ds_tipo_movimentacao,

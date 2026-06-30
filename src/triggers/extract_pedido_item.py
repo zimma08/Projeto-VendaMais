@@ -6,7 +6,7 @@ import pyodbc
 bp = func.Blueprint()
 
 
-@bp.timer_trigger(schedule="0 0 6 * * *", arg_name="timer", run_on_startup=False)
+@bp.timer_trigger(schedule="0 */1 * * * *", arg_name="timer", run_on_startup=False)
 def extract_pedido_item(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
@@ -68,6 +68,7 @@ def extract_pedido_item(timer: func.TimerRequest) -> None:
                         """
                         INSERT INTO erp.pedido_item
                         (
+                            id_pedido_item,
                             id_pedido,
                             id_produto,
                             nr_sequencia_item,
@@ -81,8 +82,9 @@ def extract_pedido_item(timer: func.TimerRequest) -> None:
                             nm_sistema_origem,
                             cd_registro_origem
                         )
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
+                        row.id_pedido_item,
                         row.id_pedido,
                         row.id_produto,
                         row.nr_sequencia_item,

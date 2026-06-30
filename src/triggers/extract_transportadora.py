@@ -5,7 +5,7 @@ import pyodbc
 
 bp = func.Blueprint()
 
-@bp.timer_trigger(schedule="0 0 6 * * *", arg_name="timer", run_on_startup=False)
+@bp.timer_trigger(schedule="0 */1 * * * *", arg_name="timer", run_on_startup=False)
 def extract_transportadora(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
@@ -67,6 +67,7 @@ def extract_transportadora(timer: func.TimerRequest) -> None:
                         """
                         INSERT INTO erp.transportadora
                         (
+                            id_transportadora,
                             cd_transportadora,
                             nm_transportadora,
                             nr_cnpj,
@@ -77,8 +78,9 @@ def extract_transportadora(timer: func.TimerRequest) -> None:
                             nm_sistema_origem,
                             cd_registro_origem
                         )
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
+                        row.id_transportadora,
                         row.cd_transportadora,
                         row.nm_transportadora,
                         row.nr_cnpj,
