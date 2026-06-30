@@ -5,7 +5,7 @@ import pyodbc
 
 bp = func.Blueprint()
 
-@bp.timer_trigger(schedule="0 0 6 * * *", arg_name="timer", run_on_startup=False)
+@bp.timer_trigger(schedule="0 */1 * * * *", arg_name="timer", run_on_startup=False)
 def extract_regiao(timer: func.TimerRequest) -> None:
     
     sql_server = os.getenv("SQL_SERVER_SOURCE")
@@ -69,6 +69,7 @@ def extract_regiao(timer: func.TimerRequest) -> None:
                         """
                         INSERT INTO erp.regiao
                         (
+                            id_regiao,
                             cd_regiao,
                             nm_regiao,
                             sg_uf,
@@ -79,8 +80,9 @@ def extract_regiao(timer: func.TimerRequest) -> None:
                             nm_sistema_origem,
                             cd_registro_origem
                         )
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
+                        row.id_regiao,
                         row.cd_regiao,
                         row.nm_regiao,
                         row.sg_uf,
